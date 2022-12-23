@@ -1,18 +1,49 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <TotalBalance :total="totalbalance" />
+    <BudgetList :list="list"  @deleteItem="onDeleteItem" />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import BudgetList from '@/components/BudgetList';
+import TotalBalance from '@/components/TotalBalance';
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    BudgetList,
+    TotalBalance
+  },
+  data: () => ({
+    list: {
+      1: {
+        type: 'INCOME',
+        value: 100,
+        comment: 'Some comment',
+        id: 1,
+      },
+      2: {
+        type: 'OUTCOME',
+        value: -80,
+        comment: 'Some comment',
+        id: 2,
+      },
+    }
+  }),
+  computed: {
+    totalBalance() {
+      return Object.values(this.list).reduce(
+        (acc, item) => acc + item.value,
+        0
+      )
+    }
+  },
+  methods: {
+    onDeleteItem(id) {
+      this.$delete(this.list, id)
+    }
   }
+
 }
 </script>
 
