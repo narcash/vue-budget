@@ -1,50 +1,49 @@
 <template>
   <div id="app">
     <TotalBalance :total="totalbalance" />
-    <BudgetList :list="list"  @deleteItem="onDeleteItem" />
+    <BudgetList :list="list" @deleteItem="onDeleteItem" />
   </div>
 </template>
 
 <script>
-import BudgetList from '@/components/BudgetList';
-import TotalBalance from '@/components/TotalBalance';
+import BudgetList from "./components/BudgetList";
+import TotalBalance from "./components/TotalBalance";
 export default {
-  name: 'App',
+  name: "App",
   components: {
     BudgetList,
-    TotalBalance
+    TotalBalance,
   },
   data: () => ({
     list: {
       1: {
-        type: 'INCOME',
+        type: "INCOME",
         value: 100,
-        comment: 'Some comment',
+        comment: "Some comment",
         id: 1,
       },
       2: {
-        type: 'OUTCOME',
-        value: -80,
-        comment: 'Some comment',
+        type: "OUTCOME",
+        value: -50,
+        comment: "S comment",
         id: 2,
       },
-    }
+    },
   }),
   computed: {
     totalBalance() {
       return Object.values(this.list).reduce(
         (acc, item) => acc + item.value,
         0
-      )
-    }
+      );
+    },
   },
   methods: {
     onDeleteItem(id) {
-      this.$delete(this.list, id)
-    }
-  }
-
-}
+      this.$delete(this.list, id);
+    },
+  },
+};
 </script>
 
 <style>
