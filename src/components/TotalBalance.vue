@@ -1,29 +1,25 @@
 import TotalBalance from '@/components/TotalBalance';
 <template>
-  <div class="total-value">
-    Balance: {{ total }}
-  </div>
+  <div class="total-value">Balance: {{ total }}</div>
 </template>
 
 <script>
 export default {
-    name: 'TotalBalance',
-    props: {
-        total: {
-            type: Number,
-            default: 0
-        }
-    }
-
-}
+  name: "TotalBalance",
+  props: {
+    total: {
+      type: Number,
+      default: 0,
+    },
+  },
+};
 </script>
 
 <style>
 .total-value {
-    font-size: 26px;
-    text-transform: uppercase;
-    padding: 20px;
-    text-align: center;
+  font-size: 26px;
+  text-transform: uppercase;
+  padding: 20px;
+  text-align: center;
 }
-
 </style>
